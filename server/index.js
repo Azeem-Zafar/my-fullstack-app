@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 // For any other requests, send back React's index.html file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client-dashbaord/build/index.html'));
 });
 
 app.get('/api/projects', async (req, res) => {
