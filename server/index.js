@@ -16,13 +16,7 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-// Serve React static files
-app.use(express.static(path.join(__dirname, '../client-dashbaord/build')));
 
-// For any other requests, send back React's index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client-dashbaord/build/index.html'));
-});
 
 app.get('/api/projects', async (req, res) => {
   try {
@@ -136,4 +130,12 @@ app.delete('/api/projects/:id', async (req, res) => {
     console.error('Delete error:', error);
     res.status(500).json({ message: 'Failed to delete project' });
   }
+});
+
+// Serve React static files
+app.use(express.static(path.join(__dirname, '../client-dashbaord/build')));
+
+// For any other requests, send back React's index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client-dashbaord/build/index.html'));
 });
