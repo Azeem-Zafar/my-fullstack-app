@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 });
 
 // Serve React static files
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client-dashbaord/build')));
 
 // For any other requests, send back React's index.html file
 app.get('*', (req, res) => {
