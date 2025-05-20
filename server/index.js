@@ -16,6 +16,14 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
+// Serve React static files
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// For any other requests, send back React's index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
 app.get('/api/projects', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT `Project_id`, `Project Name`, `Description`, `Manager`, `Location`, `Geolocation` FROM projects');
